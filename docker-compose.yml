@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  backend:
+    image: ganeshkompella/ai-travel-backend:latest
+    container_name: ai-travel-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - SECRET_KEY=${SECRET_KEY:-travel-partner-secret-key-2026}
+      - JWT_SECRET=${JWT_SECRET:-travel-jwt-secret-2026}
+    volumes:
+      - travel_db:/app/instance
+    restart: unless-stopped
+
+  frontend:
+    image: ganeshkompella/ai-travel-frontend:latest
+    container_name: ai-travel-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  travel_db:

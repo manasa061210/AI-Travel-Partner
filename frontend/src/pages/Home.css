@@ -1,0 +1,124 @@
+.home {
+  background: var(--bg);
+  min-height: 100vh;
+  padding: 28px 20px 100px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Header */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.home-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--gold-dark);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  margin: 0 0 4px 0;
+}
+.home-tagline {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+.home-bag { font-size: 2.8rem; line-height: 1; }
+
+/* Search */
+.home-search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.home-search {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 10px 14px;
+  gap: 8px;
+  transition: border-color 0.2s;
+  box-shadow: var(--card-shadow);
+}
+.home-search:focus-within { border-color: var(--gold); }
+.home-search input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 0.88rem;
+  color: var(--text);
+  font-family: inherit;
+}
+.home-search input::placeholder { color: #aaa; }
+.home-search button {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0;
+  line-height: 1;
+}
+.home-search-icons { display: flex; gap: 8px; font-size: 1.2rem; }
+
+/* Section */
+.home-section { margin-bottom: 28px; }
+.home-section-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+/* Destination Grid */
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.dest-card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  border-radius: 16px;
+  min-height: 130px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e7eb;
+  box-shadow: var(--card-shadow);
+}
+.dest-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.dest-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+  border-radius: 16px;
+}
+.dest-card-name {
+  position: relative;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.06em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
