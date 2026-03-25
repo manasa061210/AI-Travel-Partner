@@ -56,6 +56,8 @@ Frontend starts at `http://localhost:3000`
 
 ## Option 2 — Run with Docker
 
+> Docker Images: [https://hub.docker.com/repository/docker/klmanasa/ai_travel_planner](https://hub.docker.com/repository/docker/klmanasa/ai_travel_planner)
+
 ### Prerequisites
 - [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
 
