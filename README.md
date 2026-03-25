@@ -6,7 +6,8 @@ An AI-powered full-stack travel companion app that generates personalized itiner
 
 ## Prerequisites
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
+- Python 3.9+
+- Node.js 18+
 - A **Groq API Key** (free) — see below
 
 ---
@@ -20,74 +21,44 @@ An AI-powered full-stack travel companion app that generates personalized itiner
 
 ---
 
-## Step 2 — Install Docker Desktop
-
-1. Download from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
-2. Install and restart your PC if prompted
-3. Open Docker Desktop and wait until it shows **"Engine running"** in the bottom left
-
----
-
-## Step 3 — Open Terminal / Command Prompt
-
-- **Windows**: Press `Windows + R`, type `cmd`, press Enter
-- **Mac**: Press `Cmd + Space`, type `Terminal`, press Enter
-
----
-
-## Step 4 — Login to Docker Hub
+## Step 2 — Setup Backend
 
 ```bash
-docker login
+cd backend
+pip install -r requirements.txt
 ```
-Enter Docker Hub username and password when prompted.
 
-> Don't have a Docker Hub account? Sign up free at [https://hub.docker.com](https://hub.docker.com)
+Create a `.env` file inside the `backend/` folder:
 
----
+```
+GROQ_API_KEY=your_groq_api_key_here
+SECRET_KEY=travel-partner-secret-key-2026
+JWT_SECRET=travel-jwt-secret-2026
+```
 
-## Step 5 — Pull the Images
+Run the backend:
 
 ```bash
-docker pull ganeshkompella/privaterepo:backend
-docker pull ganeshkompella/privaterepo:frontend
+python app.py
 ```
+
+Backend will start at `http://localhost:5000`
 
 ---
 
-## Step 6 — Start the Backend
-
-Replace `YOUR_GROQ_API_KEY` with the key you copied in Step 1.
-
-**Windows (Command Prompt):**
-```cmd
-docker run -d --name ai-travel-backend -p 5000:5000 ^
-  -e GROQ_API_KEY=YOUR_GROQ_API_KEY ^
-  -e SECRET_KEY=travel-partner-secret-key-2026 ^
-  -e JWT_SECRET=travel-jwt-secret-2026 ^
-  ganeshkompella/privaterepo:backend
-```
-
-**Mac / Linux (Terminal):**
-```bash
-docker run -d --name ai-travel-backend -p 5000:5000 \
-  -e GROQ_API_KEY=YOUR_GROQ_API_KEY \
-  -e SECRET_KEY=travel-partner-secret-key-2026 \
-  -e JWT_SECRET=travel-jwt-secret-2026 \
-  ganeshkompella/privaterepo:backend
-```
-
----
-
-## Step 7 — Start the Frontend
+## Step 3 — Setup Frontend
 
 ```bash
-docker run -d --name ai-travel-frontend -p 3000:80 ganeshkompella/privaterepo:frontend
+cd frontend
+npm install --legacy-peer-deps
+npm start
 ```
+
+Frontend will start at `http://localhost:3000`
 
 ---
 
-## Step 8 — Open the App
+## Step 4 — Open the App
 
 Open your browser and go to:
 ```
@@ -105,48 +76,12 @@ http://localhost:3000
 
 ---
 
-## Stop / Start / Reset
-
-```bash
-# Stop containers
-docker stop ai-travel-backend ai-travel-frontend
-
-# Start again
-docker start ai-travel-backend ai-travel-frontend
-
-# Remove and start fresh
-docker rm -f ai-travel-backend ai-travel-frontend
-```
-Then repeat Steps 6 and 7 to re-run.
-
----
-
-## Run from Source Code
-
-### Backend
-```bash
-cd backend
-pip install -r requirements.txt
-cp .env.example .env        # add your GROQ_API_KEY inside
-python app.py
-```
-
-### Frontend
-```bash
-cd frontend
-npm install --legacy-peer-deps
-npm start
-```
-
----
-
 ## Tech Stack
 
-| Layer    | Technology                        |
-|----------|-----------------------------------|
-| Frontend | React 18, React Router, Axios     |
-| Backend  | Flask, Flask-SQLAlchemy, PyJWT    |
-| Database | SQLite                            |
-| AI Model | Groq API — LLaMA 3.3 70B          |
-| Auth     | JWT Tokens                        |
-| Deploy   | Docker                            |
+| Layer    | Technology                     |
+|----------|--------------------------------|
+| Frontend | React 18, React Router, Axios  |
+| Backend  | Flask, Flask-SQLAlchemy, PyJWT |
+| Database | SQLite                         |
+| AI Model | Groq API — LLaMA 3.3 70B       |
+| Auth     | JWT Tokens                     |
