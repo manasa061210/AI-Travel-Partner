@@ -4,15 +4,7 @@ An AI-powered full-stack travel companion app that generates personalized itiner
 
 ---
 
-## Prerequisites
-
-- Python 3.9+
-- Node.js 18+
-- A **Groq API Key** (free) — see below
-
----
-
-## Step 1 — Get a Groq API Key (Free)
+## Get a Groq API Key (Free)
 
 1. Go to [https://console.groq.com](https://console.groq.com)
 2. Sign up for a free account
@@ -21,7 +13,13 @@ An AI-powered full-stack travel companion app that generates personalized itiner
 
 ---
 
-## Step 2 — Setup Backend
+## Option 1 — Run Locally
+
+### Prerequisites
+- Python 3.9+
+- Node.js 18+
+
+### Backend
 
 ```bash
 cd backend
@@ -42,11 +40,9 @@ Run the backend:
 python app.py
 ```
 
-Backend will start at `http://localhost:5000`
+Backend starts at `http://localhost:5000`
 
----
-
-## Step 3 — Setup Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -54,15 +50,67 @@ npm install --legacy-peer-deps
 npm start
 ```
 
-Frontend will start at `http://localhost:3000`
+Frontend starts at `http://localhost:3000`
 
 ---
 
-## Step 4 — Open the App
+## Option 2 — Run with Docker
 
-Open your browser and go to:
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
+
+### Step 1 — Pull the Images
+
+```bash
+docker pull klmanasa/ai_travel_planner:backend
+docker pull klmanasa/ai_travel_planner:frontend
+```
+
+### Step 2 — Start the Backend
+
+Replace `your_groq_api_key_here` with your Groq API key.
+
+**Windows (Command Prompt):**
+```cmd
+docker run -d --name ai-travel-backend -p 5000:5000 ^
+  -e GROQ_API_KEY=your_groq_api_key_here ^
+  -e SECRET_KEY=travel-partner-secret-key-2026 ^
+  -e JWT_SECRET=travel-jwt-secret-2026 ^
+  klmanasa/ai_travel_planner:backend
+```
+
+**Mac / Linux:**
+```bash
+docker run -d --name ai-travel-backend -p 5000:5000 \
+  -e GROQ_API_KEY=your_groq_api_key_here \
+  -e SECRET_KEY=travel-partner-secret-key-2026 \
+  -e JWT_SECRET=travel-jwt-secret-2026 \
+  klmanasa/ai_travel_planner:backend
+```
+
+### Step 3 — Start the Frontend
+
+```bash
+docker run -d --name ai-travel-frontend -p 3000:80 klmanasa/ai_travel_planner:frontend
+```
+
+### Step 4 — Open the App
+
 ```
 http://localhost:3000
+```
+
+### Stop / Start / Reset
+
+```bash
+# Stop
+docker stop ai-travel-backend ai-travel-frontend
+
+# Start again
+docker start ai-travel-backend ai-travel-frontend
+
+# Remove and re-run fresh
+docker rm -f ai-travel-backend ai-travel-frontend
 ```
 
 ---
