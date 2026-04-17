@@ -49,6 +49,15 @@ pyinstaller --onefile ^
   --collect-all flask ^
   --collect-all flask_sqlalchemy ^
   --collect-all flask_cors ^
+  --exclude-module PySide6 ^
+  --exclude-module PyQt5 ^
+  --exclude-module PyQt6 ^
+  --exclude-module PySide2 ^
+  --exclude-module matplotlib ^
+  --exclude-module numpy ^
+  --exclude-module pandas ^
+  --exclude-module scipy ^
+  --exclude-module tkinter ^
   launcher.py
 
 if %errorlevel% neq 0 (
