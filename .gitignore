@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 backend/instance/
 backend/.env
+backend/launcher.py
 .env
 *.sqlite
 *.db
